@@ -1,3 +1,19 @@
 .indented {
     margin-left: 25px;
 }
+
+.column {
+    float: left;
+    width: 33%;
+  }
+
+.bordered {
+    border: 2px solid;
+}
+  
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

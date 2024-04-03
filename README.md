@@ -10,7 +10,7 @@ Once you have the settings file, you can use the CLI in Zoey's randomizer to gen
 
 ## Current limitations
 ### MMR version
-This page is made for MMR version 1.16.0.8. While the randomizer is generally graceful at handling missing and unknown settings fields, watch out for unexpected behavior if you are running a different version.
+This page is made for MMR version 1.16.0.8, which is currently in beta and can be found in the `#beta-releases` channel of the [MMR discord](https://discord.gg/7jBRhhJ). While the randomizer is generally graceful at handling missing and unknown settings fields, watch out for unexpected behavior if you are running a different version.
 
 If you're running a newer randomizer version and you find that the page is missing new configurable settings, please feel free to [file an issue](https://github.com/corinaminer/mmr-settings/issues/new) letting me know. You can still configure the new settings by manually editing your settings file.
 

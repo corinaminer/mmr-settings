@@ -19,7 +19,7 @@ The page is currently only set up to configure `GameplaySettings`. If you want t
 
 ### Missing configurability
 Zoey's GUI has certain cabablities that the webpage currently lacks:
-- Starting item customization. Haven't yet figured out how to change the starting items from the vanilla default, including Deku Mask.
 - Fully granular customizability of randomized checks. The page lets you randomize by category (e.g. stray fairies), not by individual check (e.g. Woodfall Jar Fairy).
+- Customized starting items. If you don't shuffle masks, you will start with Deku; if you don't shuffle songs, you will start with Healing and Soaring (and Song of Time, which is a given that won't be randomized unless you select a specific setting for that).
 - Customized junk locations.
 - TrapWeights setting. Don't have an example settings file with trap weights, and haven't looked into the expected format. Low priority.

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="mmr.css">
+</head>
+<form id="gameplaySettings">
+  <!-- 
+    TODO: Figure out how to make randomizer apply user filename
+  <label for="fname">File name:</label>
+  <input type="text" name="UserLogicFileName"><br>
+  <label>ItemCategoriesRandomized:</label><br>
+  -->
+  <div class="indented">
+    <label><input type="checkbox" name="item_cat" value="MainInventory">MainInventory</label><br>
+    <label><input type="checkbox" name="item_cat" value="Songs">Songs</label><br>
+    <label><input type="checkbox" name="item_cat" value="SongOfSoaring">SongOfSoaring</label><br>
+    <label><input type="checkbox" name="item_cat" value="HeartContainers">HeartContainers</label><br>
+    <label><input type="checkbox" name="item_cat" value="BossRemains">BossRemains</label><br>
+    <label><input type="checkbox" name="item_cat" value="PiecesOfHeart">PiecesOfHeart</label><br>
+    <label><input type="checkbox" name="item_cat" value="Masks">Masks</label><br>
+    <label><input type="checkbox" name="item_cat" value="TradeItems">TradeItems</label><br>
+    <label><input type="checkbox" name="item_cat" value="Navigation">Navigation</label><br>
+    <label><input type="checkbox" name="item_cat" value="MagicPowers">MagicPowers</label><br>
+    <label><input type="checkbox" name="item_cat" value="SkulltulaTokens">SkulltulaTokens</label><br>
+    <label><input type="checkbox" name="item_cat" value="StrayFairies">StrayFairies</label><br>
+    <label><input type="checkbox" name="item_cat" value="DungeonKeys">DungeonKeys</label><br>
+    <label><input type="checkbox" name="item_cat" value="GoldRupees">GoldRupees</label><br>
+    <label><input type="checkbox" name="item_cat" value="SilverRupees">SilverRupees</label><br>
+    <label><input type="checkbox" name="item_cat" value="PurpleRupees">PurpleRupees</label><br>
+    <label><input type="checkbox" name="item_cat" value="RedRupees">RedRupees</label><br>
+    <label><input type="checkbox" name="item_cat" value="BlueRupees">BlueRupees</label><br>
+    <label><input type="checkbox" name="item_cat" value="GreenRupees">GreenRupees</label><br>
+    <label><input type="checkbox" name="item_cat" value="RecoveryHearts">RecoveryHearts</label><br>
+    <label><input type="checkbox" name="item_cat" value="MagicJars">MagicJars</label><br>
+    <label><input type="checkbox" name="item_cat" value="Shields">Shields</label><br>
+    <label><input type="checkbox" name="item_cat" value="Bombchu">Bombchu</label><br>
+    <label><input type="checkbox" name="item_cat" value="Arrows">Arrows</label><br>
+    <label><input type="checkbox" name="item_cat" value="Bombs">Bombs</label><br>
+    <label><input type="checkbox" name="item_cat" value="DekuNuts">DekuNuts</label><br>
+    <label><input type="checkbox" name="item_cat" value="DekuSticks">DekuSticks</label><br>
+    <label><input type="checkbox" name="item_cat" value="Milk">Milk</label><br>
+    <label><input type="checkbox" name="item_cat" value="RedPotions">RedPotions</label><br>
+    <label><input type="checkbox" name="item_cat" value="GreenPotions">GreenPotions</label><br>
+    <label><input type="checkbox" name="item_cat" value="BluePotions">BluePotions</label><br>
+    <label><input type="checkbox" name="item_cat" value="Chateau">Chateau</label><br>
+    <label><input type="checkbox" name="item_cat" value="Seahorse">Seahorse</label><br>
+    <label><input type="checkbox" name="item_cat" value="Fairy">Fairy</label><br>
+    <label><input type="checkbox" name="item_cat" value="ScoopedItems">ScoopedItems</label><br>
+    <label><input type="checkbox" name="item_cat" value="NotebookEntries">NotebookEntries</label><br>
+    <label><input type="checkbox" name="item_cat" value="Frogs">Frogs</label><br>
+    <label><input type="checkbox" name="item_cat" value="TimeTravel">TimeTravel</label><br>
+    <label><input type="checkbox" name="item_cat" value="RoyalWallet">RoyalWallet</label><br>
+  </div>
+  <label>LocationCategoriesRandomized:</label><br>
+  <div class="indented">
+    <label><input type="checkbox" name="location_cat" value="Chests">Chests</label><br>
+    <label><input type="checkbox" name="location_cat" value="NpcRewards">NpcRewards</label><br>
+    <label><input type="checkbox" name="location_cat" value="Freestanding">Freestanding</label><br>
+    <label><input type="checkbox" name="location_cat" value="Purchases">Purchases</label><br>
+    <label><input type="checkbox" name="location_cat" value="StartingItems">StartingItems</label><br>
+    <label><input type="checkbox" name="location_cat" value="Minigames">Minigames</label><br>
+    <label><input type="checkbox" name="location_cat" value="BossFights">BossFights</label><br>
+    <label><input type="checkbox" name="location_cat" value="MoonItems">MoonItems</label><br>
+    <label><input type="checkbox" name="location_cat" value="EnemySpawn">EnemySpawn</label><br>
+    <label><input type="checkbox" name="location_cat" value="Grass">Grass</label><br>
+    <label><input type="checkbox" name="location_cat" value="Jars">Jars</label><br>
+    <label><input type="checkbox" name="location_cat" value="Crates">Crates</label><br>
+    <label><input type="checkbox" name="location_cat" value="SmallSnowballs">SmallSnowballs</label><br>
+    <label><input type="checkbox" name="location_cat" value="LargeSnowballs">LargeSnowballs</label><br>
+    <label><input type="checkbox" name="location_cat" value="Barrels">Barrels</label><br>
+    <label><input type="checkbox" name="location_cat" value="Beehives">Beehives</label><br>
+    <label><input type="checkbox" name="location_cat" value="InvisibleItems">InvisibleItems</label><br>
+    <label><input type="checkbox" name="location_cat" value="Events">Events</label><br>
+    <label><input type="checkbox" name="location_cat" value="SoftSoil">SoftSoil</label><br>
+    <label><input type="checkbox" name="location_cat" value="HitSpots">HitSpots</label><br>
+    <label><input type="checkbox" name="location_cat" value="Rocks">Rocks</label><br>
+    <label><input type="checkbox" name="location_cat" value="Scoops">Scoops</label><br>
+    <label><input type="checkbox" name="location_cat" value="NotebookEntries">NotebookEntries</label><br>
+    <label><input type="checkbox" name="location_cat" value="Fairies">Fairies</label><br>
+    <label><input type="checkbox" name="location_cat" value="Butterflies">Butterflies</label><br>
+    <label><input type="checkbox" name="location_cat" value="Frogs">Frogs</label><br>
+    <label><input type="checkbox" name="location_cat" value="GlitchesRequired">GlitchesRequired</label><br>
+  </div>
+  <label>ClassicCategoriesRandomized:</label><br>
+  <div class="indented">
+    <label><input type="checkbox" name="classic_cat" value="BaseItemPool">BaseItemPool</label><br>
+    <label><input type="checkbox" name="classic_cat" value="SongOfSoaring">SongOfSoaring</label><br>
+    <label><input type="checkbox" name="classic_cat" value="DungeonItems">DungeonItems</label><br>
+    <label><input type="checkbox" name="classic_cat" value="ShopItems">ShopItems</label><br>
+    <label><input type="checkbox" name="classic_cat" value="CaughtBottleContents">CaughtBottleContents</label><br>
+    <label><input type="checkbox" name="classic_cat" value="CowMilk">CowMilk</label><br>
+    <label><input type="checkbox" name="classic_cat" value="MoonItems">MoonItems</label><br>
+    <label><input type="checkbox" name="classic_cat" value="GreatFairyRewards">GreatFairyRewards</label><br>
+    <label><input type="checkbox" name="classic_cat" value="MundaneRewards">MundaneRewards</label><br>
+    <label><input type="checkbox" name="classic_cat" value="SkulltulaTokens">SkulltulaTokens</label><br>
+    <label><input type="checkbox" name="classic_cat" value="StrayFairies">StrayFairies</label><br>
+    <label><input type="checkbox" name="classic_cat" value="CrazyStartingItems">CrazyStartingItems</label><br>
+    <label><input type="checkbox" name="classic_cat" value="EverythingElse">EverythingElse</label><br>
+    <label><input type="checkbox" name="classic_cat" value="GlitchesRequired">GlitchesRequired</label><br>
+    <label><input type="checkbox" name="classic_cat" value="FreestandingRupees">FreestandingRupees</label><br>
+    <label><input type="checkbox" name="classic_cat" value="FixedMinorItemDrops">FixedMinorItemDrops</label><br>
+    <label><input type="checkbox" name="classic_cat" value="HiddenRupees">HiddenRupees</label><br>
+    <label><input type="checkbox" name="classic_cat" value="SoftSoil">SoftSoil</label><br>
+    <label><input type="checkbox" name="classic_cat" value="BossRemains">BossRemains</label><br>
+    <label><input type="checkbox" name="classic_cat" value="NotebookEntries">NotebookEntries</label><br>
+    <label><input type="checkbox" name="classic_cat" value="Fairies">Fairies</label><br>
+    <label><input type="checkbox" name="classic_cat" value="Butterflies">Butterflies</label><br>
+    <label><input type="checkbox" name="classic_cat" value="Frogs">Frogs</label><br>
+    <label><input type="checkbox" name="classic_cat" value="RoyalWallet">RoyalWallet</label><br>
+    <label><input type="checkbox" name="classic_cat" value="OcarinaAndSongOfTime">OcarinaAndSongOfTime</label><br>
+  </div>
+  <label><input type="checkbox" class="gpCheckbox" name="CloseCows">CloseCows</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="ArrowCycling">ArrowCycling</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="CritWiggleDisable">CritWiggleDisable</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="DrawHash">DrawHash</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="ElegySpeedup">ElegySpeedup</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="FastPush">FastPush</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="TrapQuirks">TrapQuirks</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="UpdateWorldModels">UpdateWorldModels</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="OcarinaUnderwater">OcarinaUnderwater</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="QuestItemStorage">QuestItemStorage</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="ContinuousDekuHopping">ContinuousDekuHopping</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="IronGoron">IronGoron</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="UpdateShopAppearance">UpdateShopAppearance</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="ProgressiveUpgrades">ProgressiveUpgrades</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="TargetHealthBar">TargetHealthBar</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="ClimbMostSurfaces">ClimbMostSurfaces</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="FreeScarecrow">FreeScarecrow</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="FillWallet">FillWallet</label><br>
+  <label for="AutoInvert">AutoInvert:</label>
+  <select name="AutoInvert">
+    <option value="Never">Never</option>
+    <option value="FirstCycle">FirstCycle</option>
+    <option value="Always">Always</option>
+  </select><br> 
+  <label><input type="checkbox" class="gpCheckbox" name="GiantMaskAnywhere">GiantMaskAnywhere</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="DoubleArcheryRewards">DoubleArcheryRewards</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="HiddenRupeesSparkle">HiddenRupeesSparkle</label><br>
+  <label for="ChestGameMinimap">ChestGameMinimap:</label>
+  <select name="ChestGameMinimap">
+    <option value="Off">Off</option>
+    <option value="Minimal">Minimal</option>
+    <option value="ConditionalSpoiler">ConditionalSpoiler</option>
+    <option value="Spoiler">Spoiler</option>
+  </select><br> 
+  <label><input type="checkbox" class="gpCheckbox" name="SaferGlitches">SaferGlitches</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="BombchuDrops">BombchuDrops</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="InstantTransform">InstantTransform</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="BombArrows">BombArrows</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="FewerHealthDrops">FewerHealthDrops</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="EasyFrameByFrame">EasyFrameByFrame</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="FairyMaskShimmer">FairyMaskShimmer</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="SkulltulaTokenSounds">SkulltulaTokenSounds</label><br>
+  <label for="RequiredBossRemains">Required Boss Remains:</label>
+  <input type="number" name="RequiredBossRemains" min="0" max="4" value="4"><br>
+  <label for="LogicMode">LogicMode:</label>
+  <select name="LogicMode">
+    <option value="Casual">Casual</option>
+    <option value="Glitched">Glitched</option>
+    <option value="Vanilla">Vanilla</option>
+    <option value="UserLogic">UserLogic</option>
+    <option value="NoLogic">NoLogic</option>
+  </select><br>
+  <label for="ItemPlacement">ItemPlacement:</label>
+  <select name="ItemPlacement">
+    <option value="Random">Random</option>
+    <option value="Bespoke">Bespoke</option>
+    <option value="Classic">Classic</option>
+  </select><br>
+  <label>EnabledTricks:</label><br>
+  <div class="indented">
+    <label><input type="checkbox" checked="true" name="tricks" value="Exit OSH Without Goron">Exit OSH Without Goron</label><br>
+    <label><input type="checkbox" checked="true" name="tricks" value="Lensless Chests">Lensless Chests</label><br>
+    <label><input type="checkbox" checked="true" name="tricks" value="Day 2 Grave Without Lens of Truth">Day 2 Grave Without Lens of Truth</label><br>
+    <label><input type="checkbox" checked="true" name="tricks" value="SHT Lensless Walls/Ceilings">SHT Lensless Walls/Ceilings</label><br>
+    <label><input type="checkbox" checked="true" name="tricks" value="Pinnacle Rock without Seahorse">Pinnacle Rock without Seahorse</label><br>
+    <label><input type="checkbox" checked="true" name="tricks" value="Run Through Poisoned Water">Run Through Poisoned Water</label><br>
+    <label><input type="checkbox" checked="true" name="tricks" value="WFT 2nd Floor Skip">WFT 2nd Floor Skip</label><br>
+    <!-- off by default below this line -->
+    <label><input type="checkbox" name="tricks" value="Scarecrow's Song">Scarecrow's Song</label><br>
+    <label><input type="checkbox" name="tricks" value="Long Jump">Long Jump</label><br>
+    <label><input type="checkbox" name="tricks" value="Poisoned Water as Goron">Poisoned Water as Goron</label><br>
+    <label><input type="checkbox" name="tricks" value="Swim to Zora Hall as Human">Swim to Zora Hall as Human</label><br>
+    <label><input type="checkbox" name="tricks" value="Brute Force OSH Code">Brute Force OSH Code</label><br>
+    <label><input type="checkbox" name="tricks" value="Climb Stone Tower with One Transformation">Climb Stone Tower with One Transformation</label><br>
+    <label><input type="checkbox" name="tricks" value="Deku Playground Rupee Displacement">Deku Playground Rupee Displacement</label><br>
+    <label><input type="checkbox" name="tricks" value="Bomb Hovering">Bomb Hovering</label><br>
+    <label><input type="checkbox" name="tricks" value="Lensless Jumping">Lensless Jumping</label><br>
+    <label><input type="checkbox" name="tricks" value="Goron Roll Item Grabs">Goron Roll Item Grabs</label><br>
+    <label><input type="checkbox" name="tricks" value="Melt Sun Blocks With Water">Melt Sun Blocks With Water</label><br>
+    <label><input type="checkbox" name="tricks" value="Powder Keg Storage">Powder Keg Storage</label><br>
+    <label><input type="checkbox" name="tricks" value="Hookshot Clip">Hookshot Clip</label><br>
+    <label><input type="checkbox" name="tricks" value="Day 1 Grave Clip">Day 1 Grave Clip</label><br>
+    <label><input type="checkbox" name="tricks" value="Icicle Clip">Icicle Clip</label><br>
+    <label><input type="checkbox" name="tricks" value="Ocarina Dive">Ocarina Dive</label><br>
+    <label><input type="checkbox" name="tricks" value="Item Dive">Item Dive</label><br>
+    <label><input type="checkbox" name="tricks" value="SHT BK Skip">SHT BK Skip</label><br>
+    <label><input type="checkbox" name="tricks" value="Lensless Walking">Lensless Walking</label><br>
+    <label><input type="checkbox" name="tricks" value="Bomber Guard Skip">Bomber Guard Skip</label><br>
+    <label><input type="checkbox" name="tricks" value="Deku Guard Skip">Deku Guard Skip</label><br>
+    <label><input type="checkbox" name="tricks" value="Kill Deku Shrine Big Octo">Kill Deku Shrine Big Octo</label><br>
+    <label><input type="checkbox" name="tricks" value="Deku Palace Bean Skip">Deku Palace Bean Skip</label><br>
+    <label><input type="checkbox" name="tricks" value="Ikana Castle Falling Ceiling Skip">Ikana Castle Falling Ceiling Skip</label><br>
+    <label><input type="checkbox" name="tricks" value="Goron Bomb Jump">Goron Bomb Jump</label><br>
+    <label><input type="checkbox" name="tricks" value="GBT Fireless">GBT Fireless</label><br>
+    <label><input type="checkbox" name="tricks" value="Ikana Canyon Iceless">Ikana Canyon Iceless</label><br>
+    <label><input type="checkbox" name="tricks" value="SHT Zora Jumps">SHT Zora Jumps</label><br>
+    <label><input type="checkbox" name="tricks" value="Jump Slash through One Sided Geometry">Jump Slash through One Sided Geometry</label><br>
+    <label><input type="checkbox" name="tricks" value="Avoid Swamp Tree Bat">Avoid Swamp Tree Bat</label><br>
+    <label><input type="checkbox" name="tricks" value="Goron Pound onto Ledges">Goron Pound onto Ledges</label><br>
+    <label><input type="checkbox" name="tricks" value="Zora Hall Scrub Ledge Climb">Zora Hall Scrub Ledge Climb</label><br>
+    <label><input type="checkbox" name="tricks" value="Lensless Walls/Ceilings">Lensless Walls/Ceilings</label><br>
+    <label><input type="checkbox" name="tricks" value="Termina Stump with No Items">Termina Stump with No Items</label><br>
+    <label><input type="checkbox" name="tricks" value="ISTT Hookshot to Eyegore">ISTT Hookshot to Eyegore</label><br>
+    <label><input type="checkbox" name="tricks" value="Ocean Skulltulas without Fire Arrows">Ocean Skulltulas without Fire Arrows</label><br>
+    <label><input type="checkbox" name="tricks" value="SHT Jump to Stray Fairies">SHT Jump to Stray Fairies</label><br>
+    <label><input type="checkbox" name="tricks" value="Clever Ice Platforms">Clever Ice Platforms</label><br>
+    <label><input type="checkbox" name="tricks" value="Inn Balcony Jump">Inn Balcony Jump</label><br>
+    <label><input type="checkbox" name="tricks" value="Shoot Goht">Shoot Goht</label><br>
+    <label><input type="checkbox" name="tricks" value="STT Water Tunnel as Human">STT Water Tunnel as Human</label><br>
+    <label><input type="checkbox" name="tricks" value="Clever Bombchu Usage">Clever Bombchu Usage</label><br>
+    <label><input type="checkbox" name="tricks" value="STT Eyegore Bridge Jumps">STT Eyegore Bridge Jumps</label><br>
+    <label><input type="checkbox" name="tricks" value="Out of Bounds">Out of Bounds</label><br>
+    <label><input type="checkbox" name="tricks" value="Inn Balcony with Cucco">Inn Balcony with Cucco</label><br>
+    <label><input type="checkbox" name="tricks" value="STT Updrafts without Deku Mask">STT Updrafts without Deku Mask</label><br>
+    <label><input type="checkbox" name="tricks" value="Zora Boomerang Through Walls">Zora Boomerang Through Walls</label><br>
+    <label><input type="checkbox" name="tricks" value="Ocarina Items">Ocarina Items</label><br>
+    <label><input type="checkbox" name="tricks" value="Action Swap">Action Swap</label><br>
+    <label><input type="checkbox" name="tricks" value="Long Bomb Hovers">Long Bomb Hovers</label><br>
+    <label><input type="checkbox" name="tricks" value="Keeta with Minimal Items">Keeta with Minimal Items</label><br>
+    <label><input type="checkbox" name="tricks" value="Time Stop">Time Stop</label><br>
+    <label><input type="checkbox" name="tricks" value="Blast Mask Hovers">Blast Mask Hovers</label><br>
+    <label><input type="checkbox" name="tricks" value="Path to Snowhead without Magic">Path to Snowhead without Magic</label><br>
+    <label><input type="checkbox" name="tricks" value="Recoil Flip Through Ice">Recoil Flip Through Ice</label><br>
+    <label><input type="checkbox" name="tricks" value="Postman without Bunny Hood">Postman without Bunny Hood</label><br>
+    <label><input type="checkbox" name="tricks" value="Deku Recoil">Deku Recoil</label><br>
+    <label><input type="checkbox" name="tricks" value="Deliver Deku Princess Without Deku Mask">Deliver Deku Princess Without Deku Mask</label><br>
+    <label><input type="checkbox" name="tricks" value="Restricted Items">Restricted Items</label><br>
+    <label><input type="checkbox" name="tricks" value="Jump Slash Take Downs">Jump Slash Take Downs</label><br>
+    <label><input type="checkbox" name="tricks" value="STT BK Skip">STT BK Skip</label><br>
+    <label><input type="checkbox" name="tricks" value="Shoot Twinmold">Shoot Twinmold</label><br>
+    <label><input type="checkbox" name="tricks" value="SHT Pillar Skip">SHT Pillar Skip</label><br>
+    <label><input type="checkbox" name="tricks" value="Lensless Climbing">Lensless Climbing</label><br>
+    <label><input type="checkbox" name="tricks" value="ISTT Early Boss Key">ISTT Early Boss Key</label><br>
+    <label><input type="checkbox" name="tricks" value="Powder Kegs as Explosives">Powder Kegs as Explosives</label><br>
+    <label><input type="checkbox" name="tricks" value="Recoil Flip">Recoil Flip</label><br>
+    <label><input type="checkbox" name="tricks" value="ISTT Lightless Boss Key">ISTT Lightless Boss Key</label><br>
+    <label><input type="checkbox" name="tricks" value="Superslide">Superslide</label><br>
+  </div>
+  <label><input type="checkbox" class="gpCheckbox" name="AddSongs">AddSongs</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="RandomizeDungeonEntrances">RandomizeDungeonEntrances</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="RandomizeBossRooms">RandomizeBossRooms</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="RandomizeEnemies">RandomizeEnemies</label><br>
+  <label for="StartingItemMode">StartingItemMode:</label>
+  <select name="StartingItemMode">
+    <option value="None">None</option>
+    <option value="Random">Random</option>
+    <option value="AllowTemporaryItems">AllowTemporaryItems</option>
+  </select><br>
+  <label for="SmallKeyMode">SmallKeyMode:</label>
+  <select name="SmallKeyMode">
+    <option value="Default">Default</option>
+    <option value="DoorsOpen">DoorsOpen</option>
+    <option value="KeepWithinTemples">KeepWithinTemples</option>
+    <option value="KeepWithinArea">KeepWithinArea</option>
+    <option value="KeepWithinOverworld">KeepWithinOverworld</option>
+    <option value="KeepThroughTime">KeepThroughTime</option>
+  </select><br>
+  <label for="BossKeyMode">BossKeyMode:</label>
+  <select name="BossKeyMode">
+    <option value="Default">Default</option>
+    <option value="DoorsOpen">DoorsOpen</option>
+    <option value="GreatFairyRewards">GreatFairyRewards</option>
+    <option value="KeepWithinTemples">KeepWithinTemples</option>
+    <option value="KeepWithinArea">KeepWithinArea</option>
+    <option value="KeepWithinOverworld">KeepWithinOverworld</option>
+    <option value="KeepThroughTime">KeepThroughTime</option>
+  </select><br>
+  <label for="StrayFairyMode">StrayFairyMode:</label>
+  <select name="StrayFairyMode">
+    <option value="Default">Default</option>
+    <option value="ChestsOnly">ChestsOnly</option>
+    <option value="KeepWithinTemples">KeepWithinTemples</option>
+    <option value="KeepWithinArea">KeepWithinArea</option>
+    <option value="KeepWithinOverworld">KeepWithinOverworld</option>
+  </select><br>
+  <label for="BossRemainsMode">BossRemainsMode:</label>
+  <select name="BossRemainsMode">
+    <option value="Default">Default</option>
+    <option value="GreatFairyRewards">GreatFairyRewards</option>
+    <option value="ShuffleOnly">ShuffleOnly</option>
+    <option value="KeepWithinTemples">KeepWithinTemples</option>
+    <option value="KeepWithinArea">KeepWithinArea</option>
+    <option value="KeepWithinOverworld">KeepWithinOverworld</option>
+    <option value="Blitz1">Blitz1</option>
+    <option value="Blitz2">Blitz2</option>
+    <option value="Blitz3">Blitz3</option>
+    <option value="Blitz4">Blitz4</option>
+  </select><br>
+  <label for="PriceMode">PriceMode:</label>
+  <select name="PriceMode">
+    <option value="None">None</option>
+    <option value="Purchases">Purchases</option>
+    <option value="Minigames">Minigames</option>
+    <option value="Misc">Misc</option>
+    <option value="AccountForRoyalWallet">AccountForRoyalWallet</option>
+    <option value="ShuffleOnly">ShuffleOnly</option>
+  </select><br>
+  <label for="DungeonNavigationMode">DungeonNavigationMode:</label>
+  <select name="DungeonNavigationMode">
+    <option value="Default">Default</option>
+    <option value="KeepWithinTemples">KeepWithinTemples</option>
+    <option value="KeepWithinArea">KeepWithinArea</option>
+    <option value="KeepWithinOverworld">KeepWithinOverworld</option>
+    <option value="MapRevealsLocation">MapRevealsLocation</option>
+    <option value="CompassRevealsBoss">CompassRevealsBoss</option>
+  </select><br>
+  <label for="VictoryMode">VictoryMode:</label>
+  <select name="VictoryMode">
+    <option value="Default">Default</option>
+    <option value="DirectToCredits">DirectToCredits</option>
+    <option value="CantFightMajora">CantFightMajora</option>
+    <option value="Fairies">Fairies</option>
+    <option value="SkullTokens">SkullTokens</option>
+    <option value="NonTransformationMasks">NonTransformationMasks</option>
+    <option value="TransformationMasks">TransformationMasks</option>
+    <option value="Notebook">Notebook</option>
+    <option value="Hearts">Hearts</option>
+    <option value="OneBossRemains">OneBossRemains</option>
+    <option value="TwoBossRemains">TwoBossRemains</option>
+    <option value="ThreeBossRemains">ThreeBossRemains</option>
+    <option value="FourBossRemains">FourBossRemains</option>
+  </select><br>
+  <label for="TrapAmount">TrapAmount:</label>
+  <select name="TrapAmount">
+    <option value="None">None</option>
+    <option value="Normal">Normal</option>
+    <option value="Extra">Extra</option>
+    <option value="Mayhem">Mayhem</option>
+    <option value="Onslaught">Onslaught</option>
+  </select><br>
+  <label for="TrapAppearance">TrapAppearance:</label>
+  <select name="TrapAppearance">
+    <option value="MajorItems">MajorItems</option>
+    <option value="JunkItems">JunkItems</option>
+    <option value="Anything">Anything</option>
+  </select><br>
+  <label for="DamageMode">DamageMode:</label>
+  <select name="DamageMode">
+    <option value="Default">Default</option>
+    <option value="Double">Double</option>
+    <option value="Quadruple">Quadruple</option>
+    <option value="OHKO">OHKO</option>
+    <option value="Doom">Doom</option>
+  </select><br>  <label for="DamageEffect">DamageEffect:</label>
+  <select name="DamageEffect">
+    <option value="Default">Default</option>
+    <option value="Fire">Fire</option>
+    <option value="Ice">Ice</option>
+    <option value="Shock">Shock</option>
+    <option value="Knockdown">Knockdown</option>
+    <option value="Random">Random</option>
+  </select><br>  <label for="MovementMode">MovementMode:</label>
+  <select name="MovementMode">
+    <option value="Default">Default</option>
+    <option value="HighSpeed">HighSpeed</option>
+    <option value="SuperLowGravity">SuperLowGravity</option>
+    <option value="LowGravity">LowGravity</option>
+    <option value="HighGravity">HighGravity</option>
+  </select><br>  <label for="FloorType">FloorType:</label>
+  <select name="FloorType">
+    <option value="Default">Default</option>
+    <option value="Sand">Sand</option>
+    <option value="Ice">Ice</option>
+    <option value="Snow">Snow</option>
+    <option value="Random">Random</option>
+  </select><br> 
+  <label for="NutandStickDrops">NutandStickDrops:</label>
+  <select name="NutandStickDrops">
+    <option value="Default">Default</option>
+    <option value="Light">Light</option>
+    <option value="Medium">Medium</option>
+    <option value="Extra">Extra</option>
+    <option value="Mayhem">Mayhem</option>
+  </select><br>
+  <label for="ClockSpeed">ClockSpeed:</label>
+  <select name="ClockSpeed">
+    <option value="Default">Default</option>
+    <option value="VerySlow">VerySlow</option>
+    <option value="Slow">Slow</option>
+    <option value="Fast">Fast</option>
+    <option value="VeryFast">VeryFast</option>
+    <option value="SuperFast">SuperFast</option>
+  </select><br>
+  <label><input type="checkbox" class="gpCheckbox" name="HideClock">HideClock</label><br>
+  <label for="BlastMaskCooldown">BlastMaskCooldown:</label>
+  <select name="BlastMaskCooldown">
+    <option value="Default">Default</option>
+    <option value="Instant">Instant</option>
+    <option value="VeryShort">VeryShort</option>
+    <option value="Short">Short</option>
+    <option value="Long">Long</option>
+    <option value="VeryLong">VeryLong</option>
+  </select><br>
+  <label><input type="checkbox" class="gpCheckbox" name="EnableSunsSong">EnableSunsSong</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="AllowFierceDeityAnywhere">AllowFierceDeityAnywhere</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="ByoAmmo">ByoAmmo</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="DeathMoonCrash">DeathMoonCrash</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="HookshotAnySurface">HookshotAnySurface</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="VanillaMoonTrialAccess">VanillaMoonTrialAccess</label><br>
+  <label>ShortenCutsceneSettings</label><br>
+  <label>General:</label><br>
+  <div class="indented">
+    <label><input type="checkbox" name="cutscene_general" value="BlastMaskThief">BlastMaskThief</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="BoatArchery">BoatArchery</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="FishermanGame">FishermanGame</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="MilkBarPerformance">MilkBarPerformance</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="HungryGoron">HungryGoron</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="TatlInterrupts">TatlInterrupts</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="FasterBankText">FasterBankText</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="GoronVillageOwl">GoronVillageOwl</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="AutomaticCredits">AutomaticCredits</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="PrincessDelivery">PrincessDelivery</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="ShortChestOpening">ShortChestOpening</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="SunMask">SunMask</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="Tingle">Tingle</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="JimRunning">JimRunning</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="Kotake">Kotake</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="HoldAText">HoldAText</label><br>
+    <label><input type="checkbox" name="cutscene_general" value="EverythingElse">EverythingElse</label><br>
+  </div>
+  <label>BossIntros:</label><br>
+  <div class="indented">
+    <label><input type="checkbox" name="cutscene_bossintros" value="Odolwa">Odolwa</label><br>
+    <label><input type="checkbox" name="cutscene_bossintros" value="Goht">Goht</label><br>
+    <label><input type="checkbox" name="cutscene_bossintros" value="Gyorg">Gyorg</label><br>
+    <label><input type="checkbox" name="cutscene_bossintros" value="Twinmold">Twinmold</label><br>
+    <label><input type="checkbox" name="cutscene_bossintros" value="Majora">Majora</label><br>
+    <label><input type="checkbox" name="cutscene_bossintros" value="Wart">Wart</label><br>
+    <label><input type="checkbox" name="cutscene_bossintros" value="IgosDuIkana">IgosDuIkana</label><br>
+    <label><input type="checkbox" name="cutscene_bossintros" value="Gomess">Gomess</label><br>
+  </div>
+  <label><input type="checkbox" class="gpCheckbox" name="QuickTextEnabled">QuickTextEnabled</label><br>
+  <label for="Character">Character:</label>
+  <select name="Character">
+    <option value="LinkMM">LinkMM</option>
+    <option value="LinkOOT">LinkOOT</option>
+    <option value="AdultLink">AdultLink</option>
+    <option value="Kafei">Kafei</option>
+  </select><br>
+  <label for="GossipHintStyle">GossipHintStyle:</label>
+  <select name="GossipHintStyle">
+    <option value="Default">Default</option>
+    <option value="Random">Random</option>
+    <option value="Relevant">Relevant</option>
+    <option value="Competitive">Competitive</option>
+  </select><br>
+  <label for="GaroHintStyle">GaroHintStyle:</label>
+  <select name="GaroHintStyle">
+    <option value="Default">Default</option>
+    <option value="Random">Random</option>
+    <option value="Relevant">Relevant</option>
+    <option value="Competitive">Competitive</option>
+  </select><br>
+  <label><input type="checkbox" class="gpCheckbox" name="MixGossipAndGaroHints">MixGossipAndGaroHints</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="FreeHints">FreeHints</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="FreeGaroHints">FreeGaroHints</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="ClearHints">ClearHints</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="ClearGaroHints">ClearGaroHints</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="TolerantGossipStones">TolerantGossipStones</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="HintsIndicateImportance">HintsIndicateImportance</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="PreventDowngrades">PreventDowngrades</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="UpdateChests">UpdateChests</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="UpdateNPCText">UpdateNPCText</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="FixEponaSword">FixEponaSword</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="EnablePictoboxSubject">EnablePictoboxSubject</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="LenientGoronSpikes">LenientGoronSpikes</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="KeepQuestTradeThroughTime">KeepQuestTradeThroughTime</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="ImprovedCamera">ImprovedCamera</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="SpeedupBeavers">SpeedupBeavers</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="SpeedupDampe">SpeedupDampe</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="SpeedupDogRace">SpeedupDogRace</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="SpeedupLabFish">SpeedupLabFish</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="SpeedupBank">SpeedupBank</label><br>
+  <label><input type="checkbox" class="gpCheckbox" name="SpeedupBabyCuccos">SpeedupBabyCuccos</label><br>
+</form>
+<form id="submitForm">
+  <input type="submit" value="Download settings">
+</form>
+<script type="module" src="./mmr.js"></script>
+

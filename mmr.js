@@ -1,12 +1,87 @@
-const gameplaySettingsForm = document.querySelector("#gameplaySettings");
-const submitForm = document.querySelector("#submitForm");
+import { getDefaultGameplaySettings } from "./default-settings.js";
+import { getSettings, setSettings, update } from "./settings.js";
 
+// Initialization: Load default settings, update form to show them
+setSettings({"GameplaySettings": getDefaultGameplaySettings()});
+populateFormFromCurrentSettings();
+const allSettingFormElements = document.querySelectorAll('input[type="checkbox"],select');
+allSettingFormElements.forEach(s => s.addEventListener("change", event => update(event.target)));
+
+/** Updates all form fields to reflect current settings. */
+function populateFormFromCurrentSettings() {
+  const gpSettings = getSettings()["GameplaySettings"];
+
+  // TODO Update these based on selected locations
+  const checkCheckboxes = document.querySelectorAll('input[class="item_cat"],input[class="location_cat"],input[class="classic_cat"]');
+  checkCheckboxes.forEach(c => c.checked = false);
+
+  // Top-level checkboxes: Checked only if explicitly marked true in settings
+  const checkboxes = document.querySelectorAll('input[class="gpCheckbox"]');
+  checkboxes.forEach(checkbox => {
+    const valInSettings = gpSettings[checkbox.name];
+    checkbox.checked = valInSettings === true;
+  })
+
+  // Dropdowns: If setting is not explicitly set in imported settings, use default value
+  const dropdowns = document.querySelectorAll('select[class="gpDropdown"]');
+  dropdowns.forEach(dropdown => {
+    const setVal = gpSettings[dropdown.name];
+    const newVal = setVal !== undefined ? setVal : getDefaultGameplaySettings()[dropdown.name];
+    dropdown.value = newVal;
+  })
+
+  // Enabled tricks: setSettings() guarantees this is populated
+  const trickCheckboxes = document.querySelectorAll('input[class="tricks"]');
+  trickCheckboxes.forEach(c => c.checked = gpSettings["EnabledTricks"].indexOf(c.name) !== -1);
+
+  // Shorten cutscene settings: setSettings() guarantees this is populated
+  const shortenGeneral = gpSettings.ShortenCutsceneSettings.General.split(", ");
+  const shortenBossIntros = gpSettings.ShortenCutsceneSettings.BossIntros.split(", ");
+  const generalCheckboxes = document.querySelectorAll('input[class="cutscene_general"');
+  const bossIntroCheckboxes = document.querySelectorAll('input[class="cutscene_bossintros"');
+  generalCheckboxes.forEach(c => c.checked = shortenGeneral.indexOf(c.name) !== -1);
+  bossIntroCheckboxes.forEach(c => c.checked = shortenBossIntros.indexOf(c.name) !== -1);
+}
+
+/** Sets current settings to the uploaded settings and updates the form accordingly. */
+function applyUploadedSettings(uploadedSettings) {
+  const customCats = setSettings(uploadedSettings);
+  const warningElement = document.querySelector("#custom_categories_warning");
+  if (customCats.length !== 0) {
+    warningElement.style.display = "block";
+    warningElement.innerHTML = `
+      <label>Warning: This page does not support custom check randomization within categories.</label><br>
+      <label>The following check categories have custom randomization in your settings file: <b>${customCats.join(", ")}</b></label>
+    `;
+  } else {
+    warningElement.style.display = "none";
+  }
+  populateFormFromCurrentSettings();
+}
+
+// Import uploaded settings
+const fr = new FileReader();
+const uploadInput = document.querySelector("#fileUpload");
+const importButton = document.querySelector("#importButton");
+fr.onload = function(event) { 
+  const uploadedSettings = JSON.parse(event.target.result);
+  // Apply gameplay settings from uploaded file, if present
+  if (uploadedSettings["GameplaySettings"]) {
+    applyUploadedSettings(uploadedSettings);
+  } else {
+    alert(`${uploadInput.files[0].name} has no GameplaySettings attribute.`);
+  }
+}
+uploadInput.addEventListener("change", () => importButton.disabled = uploadInput.files.length === 0);
+importButton.addEventListener("click", () => fr.readAsText(uploadInput.files[0]));
+
+
+// Download settings
 function save(filename, data) {
   const blob = new Blob([JSON.stringify(data, undefined, 2)], {type: 'application/json'});
   if (window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveBlob(blob, filename);
-  }
-  else {
+  } else {
       const elem = window.document.createElement('a');
       elem.href = window.URL.createObjectURL(blob);
       elem.download = filename;        
@@ -15,92 +90,8 @@ function save(filename, data) {
       document.body.removeChild(elem);
   }
 }
-
-
-function extractChecklist(checkbox_name) {
-  // Extract the checked boxes for the setting
-  const checkboxes = document.querySelectorAll(`input[name="${checkbox_name}"]`);
-  const checked_items = [];
-  checkboxes.forEach(i => {
-    if (i.checked) {
-      checked_items.push(i.value);
-    }
-  })
-  return checked_items;
-}
-
-function extractChecklistSetting(setting_name, checkbox_name, settings_obj) {
-  const checked_items = extractChecklist(checkbox_name);
-  settings_obj[setting_name] = checked_items;
-
-  // Delete the checkbox name from the settings
-  delete settings_obj[checkbox_name];
-}
-
-/**
- * Takes in a settings object and changes any "on" or "off" values to `true` and `false` respectively.
- */
-function makeCheckboxesBooleans(checkboxes, obj) {
-  checkboxes.forEach(c => obj[c.name] = c.checked);
-}
-
-function convertGameplaySettings() {
-  const gameplaySettingsFormData = new FormData(gameplaySettingsForm);
-  var gsObj = Object.fromEntries(gameplaySettingsFormData.entries());
-
-  // Extract categories to randomize
-  extractChecklistSetting("ItemCategoriesRandomized", "item_cat", gsObj);
-  extractChecklistSetting("LocationCategoriesRandomized", "location_cat", gsObj);
-  extractChecklistSetting("ClassicCategoriesRandomized", "classic_cat", gsObj);
-
-  // Extract enabled tricks
-  extractChecklistSetting("EnabledTricks", "tricks", gsObj);
-
-  /*
-    Convert shorten cutscene settings to its stupid format.
-    Entries should only be added if they are not empty.
-    "ShortenCutsceneSettings": {
-      "General": "BlastMaskThief, Tingle, JimRunning, Kotake, HoldAText, EverythingElse",
-      "BossIntros": "Odolwa, Goht, Gyorg, Majora, IgosDuIkana, Gomess"
-    },
-  */
-  const shortenCutsceneSettings = {};
-  const cutsceneGeneralCheckboxName = "cutscene_general";
-  const cutsceneBossIntrosCheckboxName = "cutscene_bossintros";
-  const generalToShorten = extractChecklist(cutsceneGeneralCheckboxName);
-  const bossIntrosToShorten = extractChecklist(cutsceneBossIntrosCheckboxName);
-  if (generalToShorten.length !== 0) {
-    shortenCutsceneSettings["General"] = generalToShorten.join(", ");
-  }
-  if (bossIntrosToShorten.length !== 0) {
-    shortenCutsceneSettings["BossIntros"] = bossIntrosToShorten.join(", ");
-  }
-  gsObj["ShortenCutsceneSettings"] = shortenCutsceneSettings;
-  delete gsObj[cutsceneGeneralCheckboxName];
-  delete gsObj[cutsceneBossIntrosCheckboxName];
-
-  // Convert required boss remains to a number
-  gsObj["RequiredBossRemains"] = parseInt(gsObj["RequiredBossRemains"]);
-  
-  // Set checkbox values to booleans
-  const checkboxes = document.querySelectorAll('input[class="gpCheckbox"]');
-  checkboxes.forEach(c => gsObj[c.name] = c.checked);
-
-  return gsObj;
-}
-
-function saveSettings() {
-  const settings = {};
-
-  const gameplaySettings = convertGameplaySettings();
-  console.log(gameplaySettings);
-
-  // Save the file
-  settings["GameplaySettings"] = gameplaySettings;
-  save("mmr-settings.json", settings);
-}
-
-submitForm.addEventListener("submit", (event) => {
+const downloadButton = document.querySelector("#downloadButton");
+downloadButton.addEventListener("submit", (event) => {
   event.preventDefault();
-  saveSettings();
+  save("mmr-settings.json", getSettings());
 });

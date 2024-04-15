@@ -4,7 +4,10 @@
 </head>
 <script type="module" src="./settings.js"></script>
 <label>To start from an existing settings file, upload here: <input type="file" id="fileUpload" value="Import" accept="application/json"></label>
-<button id="importButton" disabled>Apply uploaded settings</button><br>
+<button id="importButton" disabled>Apply uploaded settings</button>
+<button id="resetButton">Reset to default settings</button>
+<button id="downloadButton">Download settings</button>
+<br>
 <div id="custom_categories_warning" style="color: red"></div>
 <form id="gameplaySettings">
   <!-- 
@@ -552,9 +555,6 @@
       </div>
     </div>
   </div>
-</form>
-<form id="downloadButton">
-  <input type="submit" value="Download settings">
 </form>
 <script type="module" src="./mmr.js"></script>
 

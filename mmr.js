@@ -2,10 +2,14 @@ import { getDefaultGameplaySettings } from "./default-settings.js";
 import { getSettings, setSettings, update } from "./settings.js";
 
 // Initialization: Load default settings, update form to show them
-setSettings({"GameplaySettings": getDefaultGameplaySettings()});
-populateFormFromCurrentSettings();
+reset();
 const allSettingFormElements = document.querySelectorAll('input[type="checkbox"],select');
 allSettingFormElements.forEach(s => s.addEventListener("change", event => update(event.target)));
+
+/** Resets the settings and form to default settings. */
+function reset() {
+  applySettings({"GameplaySettings": getDefaultGameplaySettings()});
+}
 
 /** Updates all form fields to reflect current settings. */
 function populateFormFromCurrentSettings() {
@@ -50,9 +54,9 @@ function populateFormFromCurrentSettings() {
   bossIntroCheckboxes.forEach(c => c.checked = shortenBossIntros.indexOf(c.name) !== -1);
 }
 
-/** Sets current settings to the uploaded settings and updates the form accordingly. */
-function applyUploadedSettings(uploadedSettings) {
-  const warnings = setSettings(uploadedSettings);
+/** Sets current settings to the given settings and updates the form accordingly. */
+function applySettings(settings) {
+  const warnings = setSettings(settings);
   const warningElement = document.querySelector("#custom_categories_warning");
   if (warnings.length !== 0) {
     let innerHtml = "";
@@ -75,7 +79,7 @@ fr.onload = function(event) {
   const uploadedSettings = JSON.parse(event.target.result);
   // Apply gameplay settings from uploaded file, if present
   if (uploadedSettings["GameplaySettings"]) {
-    applyUploadedSettings(uploadedSettings);
+    applySettings(uploadedSettings);
   } else {
     alert(`${uploadInput.files[0].name} has no GameplaySettings attribute.`);
   }
@@ -83,6 +87,9 @@ fr.onload = function(event) {
 uploadInput.addEventListener("change", () => importButton.disabled = uploadInput.files.length === 0);
 importButton.addEventListener("click", () => fr.readAsText(uploadInput.files[0]));
 
+// Reset to default settings
+const resetButton = document.querySelector("#resetButton");
+resetButton.addEventListener("click", reset);
 
 // Download settings
 function save(filename, data) {
@@ -99,7 +106,4 @@ function save(filename, data) {
   }
 }
 const downloadButton = document.querySelector("#downloadButton");
-downloadButton.addEventListener("submit", (event) => {
-  event.preventDefault();
-  save("mmr-settings.json", getSettings());
-});
+downloadButton.addEventListener("click", () => save("mmr-settings.json", getSettings()));

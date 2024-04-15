@@ -11,9 +11,16 @@ allSettingFormElements.forEach(s => s.addEventListener("change", event => update
 function populateFormFromCurrentSettings() {
   const gpSettings = getSettings()["GameplaySettings"];
 
-  // TODO Update these based on selected locations
-  const checkCheckboxes = document.querySelectorAll('input[class="item_cat"],input[class="location_cat"],input[class="classic_cat"]');
-  checkCheckboxes.forEach(c => c.checked = false);
+  // Update randomized checks
+  const itemCatCheckboxes = document.querySelectorAll('input[class="item_cat"]');
+  const locCatCheckboxes = document.querySelectorAll('input[class="location_cat"]');
+  const classicCatCheckboxes = document.querySelectorAll('input[class="classic_cat"]');
+  const itemCat = gpSettings.ItemCategoriesRandomized || [];
+  const locCat = gpSettings.LocationCategoriesRandomized || [];
+  const classicCat = gpSettings.ClassicCategoriesRandomized || [];
+  itemCatCheckboxes.forEach(c => c.checked = itemCat.indexOf(c.name) !== -1);
+  locCatCheckboxes.forEach(c => c.checked = locCat.indexOf(c.name) !== -1);
+  classicCatCheckboxes.forEach(c => c.checked = classicCat.indexOf(c.name) !== -1);
 
   // Top-level checkboxes: Checked only if explicitly marked true in settings
   const checkboxes = document.querySelectorAll('input[class="gpCheckbox"]');

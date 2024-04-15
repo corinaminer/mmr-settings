@@ -42,7 +42,7 @@ export function setSettings(newSettings) {
   }
   const warnings = ["Warning: This page cannot yet interpret custom item strings."];
   if (gpSettings[customItems]) {
-    warnings.push("Checks to randomize must be configured manually using the below form.");
+    warnings.push("Categories to randomize must be configured manually using the below form.");
     // Remove custom item string from settings.
     // This is just cleanup for clarity; adding ItemCategoriesRandomized, LocationCategoriesRandomized, or
     // ClassicCategoriesRandomized causes custom item string to be ignored.

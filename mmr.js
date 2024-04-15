@@ -45,14 +45,15 @@ function populateFormFromCurrentSettings() {
 
 /** Sets current settings to the uploaded settings and updates the form accordingly. */
 function applyUploadedSettings(uploadedSettings) {
-  const customCats = setSettings(uploadedSettings);
+  const warnings = setSettings(uploadedSettings);
   const warningElement = document.querySelector("#custom_categories_warning");
-  if (customCats.length !== 0) {
+  if (warnings.length !== 0) {
+    let innerHtml = "";
+    for (const w of warnings) {
+      innerHtml += `<label>${w}</label><br>`
+    }
     warningElement.style.display = "block";
-    warningElement.innerHTML = `
-      <label>Warning: This page does not support custom check randomization within categories.</label><br>
-      <label>The following check categories have custom randomization in your settings file: <b>${customCats.join(", ")}</b></label>
-    `;
+    warningElement.innerHTML = innerHtml;
   } else {
     warningElement.style.display = "none";
   }

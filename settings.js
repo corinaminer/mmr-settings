@@ -7,8 +7,8 @@ let settings = {"GameplaySettings": {}};
  * Does not clear or modify unrecognized settings in the provided object; this way users can
  * upload and modify their settings.json without losing CosmeticSettings or other new settings.
  * 
- * @returns A list of randomization categories, if any, for which the provided settings have
- *          more granular customization than per-category.
+ * @returns Warning to show, if any, upon upload. A list of strings where each element will
+ *          display as one line of warning.
  */
 export function setSettings(newSettings) {
   settings = newSettings;
@@ -34,8 +34,20 @@ export function setSettings(newSettings) {
     }
   }
 
-  // TODO: Convert CustomItemListString to check categories
-  return [];
+  const customItems = "CustomItemListString";
+  const customStarting = "CustomStartingItemListString";
+  const customJunk = "CustomJunkLocationsString";
+  if (!gpSettings[customItems] && !gpSettings[customStarting] && !gpSettings[customJunk]) {
+    return [];
+  }
+  const warnings = ["Warning: This page cannot yet interpret custom item strings."];
+  if (gpSettings[customItems]) {
+    warnings.push("Checks to randomize must be configured manually using the below form.");
+  }
+  if (gpSettings[customStarting] || gpSettings[customJunk]) {
+    warnings.push("Starting items and junk locations will be preserved as configured in the uploaded settings.");
+  }
+  return warnings;
 }
 
 /** Returns current active settings */

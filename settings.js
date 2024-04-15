@@ -43,6 +43,12 @@ export function setSettings(newSettings) {
   const warnings = ["Warning: This page cannot yet interpret custom item strings."];
   if (gpSettings[customItems]) {
     warnings.push("Checks to randomize must be configured manually using the below form.");
+    // Remove custom item string from settings.
+    // This is just cleanup for clarity; adding ItemCategoriesRandomized, LocationCategoriesRandomized, or
+    // ClassicCategoriesRandomized causes custom item string to be ignored.
+    // TODO Would it be better to keep the custom item string until user modifies checks to randomize?
+    //      Enables use case where user wants to change other settings but keep the same checks randomized.
+    delete gpSettings[customItems];
   }
   if (gpSettings[customStarting] || gpSettings[customJunk]) {
     warnings.push("Starting items and junk locations will be preserved as configured in the uploaded settings.");

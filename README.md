@@ -4,7 +4,9 @@ Page: https://corinaminer.github.io/mmr-settings/
 This repository is the source for a basic webpage where you can make settings for [Zoey Zolotova's Majora's Mask randomizer](https://github.com/ZoeyZolotova/mm-rando). Zoey has developed a very lovely GUI for generating MMR seeds, but it only runs on Windows. If you're a Mac user hoping to play some MMR without running a VM, this is for you.
 
 ## How to generate settings
-The webpage is very basic. Configure the settings on the page as you like, then hit the "Download Settings" link at the bottom to get your `mmr-settings.json` file.
+The webpage is very basic. Configure the settings on the page as you like, then hit the "Download Settings" button to get your `mmr-settings.json` file.
+
+You can also upload a settings file you already have to pre-populate the form. If you take this approach, the settings you download will preserve any unrecognized fields from the uploaded file, including cosmetic and output settings.
 
 Once you have the settings file, you can use the CLI in Zoey's randomizer to generate a seed. Check out [this guide](https://docs.google.com/document/d/19lqbkCu9ai_0nqJ5T7fWJuK6JZnZz0xUKxD4mg7J4ZI/) for help generating seeds with the CLI.
 

@@ -2,9 +2,11 @@
 <head>
   <link type="text/css" rel="stylesheet" href="./mmr.css">
 </head>
-<script type="module" src="./settings.js"></script>
 <label>To start from an existing settings file, upload here: <input type="file" id="fileUpload" value="Import" accept="application/json"></label>
-<button id="importButton" disabled>Apply uploaded settings</button><br>
+<button id="importButton" disabled>Apply uploaded settings</button>
+<button id="resetButton">Reset to default settings</button>
+<button id="downloadButton">Download settings</button>
+<br>
 <div id="custom_categories_warning" style="color: red"></div>
 <form id="gameplaySettings">
   <!-- 
@@ -151,22 +153,24 @@
         <label><input type="checkbox" class="gpCheckbox" name="ClimbMostSurfaces">ClimbMostSurfaces</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="FreeScarecrow">FreeScarecrow</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="FillWallet">FillWallet</label><br>
-        <label for="AutoInvert">AutoInvert:</label>
-        <select class="gpDropdown" name="AutoInvert">
-          <option value="Never">Never</option>
-          <option value="FirstCycle">FirstCycle</option>
-          <option value="Always">Always</option>
-        </select><br> 
+        <label for="AutoInvert">AutoInvert:
+          <select class="gpDropdown" name="AutoInvert">
+            <option value="Never">Never</option>
+            <option value="FirstCycle">FirstCycle</option>
+            <option value="Always">Always</option>
+          </select>
+        </label><br> 
         <label><input type="checkbox" class="gpCheckbox" name="GiantMaskAnywhere">GiantMaskAnywhere</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="DoubleArcheryRewards">DoubleArcheryRewards</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="HiddenRupeesSparkle">HiddenRupeesSparkle</label><br>
-        <label for="ChestGameMinimap">ChestGameMinimap:</label>
-        <select class="gpDropdown" name="ChestGameMinimap">
-          <option value="Off">Off</option>
-          <option value="Minimal">Minimal</option>
-          <option value="ConditionalSpoiler">ConditionalSpoiler</option>
-          <option value="Spoiler">Spoiler</option>
-        </select><br> 
+        <label for="ChestGameMinimap">ChestGameMinimap:
+          <select class="gpDropdown" name="ChestGameMinimap">
+            <option value="Off">Off</option>
+            <option value="Minimal">Minimal</option>
+            <option value="ConditionalSpoiler">ConditionalSpoiler</option>
+            <option value="Spoiler">Spoiler</option>
+          </select>
+        </label><br> 
         <label><input type="checkbox" class="gpCheckbox" name="SaferGlitches">SaferGlitches</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="BombchuDrops">BombchuDrops</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="InstantTransform">InstantTransform</label><br>
@@ -179,186 +183,206 @@
         <label><input type="checkbox" class="gpCheckbox" name="EasyFrameByFrame">EasyFrameByFrame</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="FairyMaskShimmer">FairyMaskShimmer</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="SkulltulaTokenSounds">SkulltulaTokenSounds</label><br>
-        <label for="RequiredBossRemains">RequiredBossRemains:</label>
-        <select class="gpDropdown" name="RequiredBossRemains">
-          <option value=4>4</option>
-          <option value=3>3</option>
-          <option value=2>2</option>
-          <option value=1>1</option>
-          <option value=0>0</option>
-        </select><br> 
-        <label for="LogicMode">LogicMode:</label>
-        <select class="gpDropdown" name="LogicMode">
-          <option value="Casual">Casual</option>
-          <option value="Glitched">Glitched</option>
-          <option value="Vanilla">Vanilla</option>
-          <option value="UserLogic">UserLogic</option>
-          <option value="NoLogic">NoLogic</option>
-        </select><br>
-        <label for="ItemPlacement">ItemPlacement:</label>
-        <select class="gpDropdown" name="ItemPlacement">
-          <option value="Random">Random</option>
-          <option value="Bespoke">Bespoke</option>
-          <option value="Classic">Classic</option>
-        </select><br>
-        <label for="StartingItemMode">StartingItemMode:</label>
-        <select class="gpDropdown" name="StartingItemMode">
-          <option value="None">None</option>
-          <option value="Random">Random</option>
-          <option value="AllowTemporaryItems">AllowTemporaryItems</option>
-        </select><br>
-        <label for="SmallKeyMode">SmallKeyMode:</label>
-        <select class="gpDropdown" name="SmallKeyMode">
-          <option value="Default">Default</option>
-          <option value="DoorsOpen">DoorsOpen</option>
-          <option value="KeepWithinTemples">KeepWithinTemples</option>
-          <option value="KeepWithinArea">KeepWithinArea</option>
-          <option value="KeepWithinOverworld">KeepWithinOverworld</option>
-          <option value="KeepThroughTime">KeepThroughTime</option>
-        </select><br>
-        <label for="BossKeyMode">BossKeyMode:</label>
-        <select class="gpDropdown" name="BossKeyMode">
-          <option value="Default">Default</option>
-          <option value="DoorsOpen">DoorsOpen</option>
-          <option value="GreatFairyRewards">GreatFairyRewards</option>
-          <option value="KeepWithinTemples">KeepWithinTemples</option>
-          <option value="KeepWithinArea">KeepWithinArea</option>
-          <option value="KeepWithinOverworld">KeepWithinOverworld</option>
-          <option value="KeepThroughTime">KeepThroughTime</option>
-        </select><br>
-        <label for="StrayFairyMode">StrayFairyMode:</label>
-        <select class="gpDropdown" name="StrayFairyMode">
-          <option value="Default">Default</option>
-          <option value="ChestsOnly">ChestsOnly</option>
-          <option value="KeepWithinTemples">KeepWithinTemples</option>
-          <option value="KeepWithinArea">KeepWithinArea</option>
-          <option value="KeepWithinOverworld">KeepWithinOverworld</option>
-        </select><br>
-        <label for="BossRemainsMode">BossRemainsMode:</label>
-        <select class="gpDropdown" name="BossRemainsMode">
-          <option value="Default">Default</option>
-          <option value="GreatFairyRewards">GreatFairyRewards</option>
-          <option value="ShuffleOnly">ShuffleOnly</option>
-          <option value="KeepWithinTemples">KeepWithinTemples</option>
-          <option value="KeepWithinArea">KeepWithinArea</option>
-          <option value="KeepWithinOverworld">KeepWithinOverworld</option>
-          <option value="Blitz1">Blitz1</option>
-          <option value="Blitz2">Blitz2</option>
-          <option value="Blitz3">Blitz3</option>
-          <option value="Blitz4">Blitz4</option>
-        </select><br>
-        <label for="PriceMode">PriceMode:</label>
-        <select class="gpDropdown" name="PriceMode">
-          <option value="None">None</option>
-          <option value="Purchases">Purchases</option>
-          <option value="Minigames">Minigames</option>
-          <option value="Misc">Misc</option>
-          <option value="AccountForRoyalWallet">AccountForRoyalWallet</option>
-          <option value="ShuffleOnly">ShuffleOnly</option>
-        </select><br>
-        <label for="DungeonNavigationMode">DungeonNavigationMode:</label>
-        <select class="gpDropdown" name="DungeonNavigationMode">
-          <option value="Default">Default</option>
-          <option value="KeepWithinTemples">KeepWithinTemples</option>
-          <option value="KeepWithinArea">KeepWithinArea</option>
-          <option value="KeepWithinOverworld">KeepWithinOverworld</option>
-          <option value="MapRevealsLocation">MapRevealsLocation</option>
-          <option value="CompassRevealsBoss">CompassRevealsBoss</option>
-        </select><br>
-        <label for="VictoryMode">VictoryMode:</label>
-        <select class="gpDropdown" name="VictoryMode">
-          <option value="Default">Default</option>
-          <option value="DirectToCredits">DirectToCredits</option>
-          <option value="CantFightMajora">CantFightMajora</option>
-          <option value="Fairies">Fairies</option>
-          <option value="SkullTokens">SkullTokens</option>
-          <option value="NonTransformationMasks">NonTransformationMasks</option>
-          <option value="TransformationMasks">TransformationMasks</option>
-          <option value="Notebook">Notebook</option>
-          <option value="Hearts">Hearts</option>
-          <option value="OneBossRemains">OneBossRemains</option>
-          <option value="TwoBossRemains">TwoBossRemains</option>
-          <option value="ThreeBossRemains">ThreeBossRemains</option>
-          <option value="FourBossRemains">FourBossRemains</option>
-        </select><br>
-        <label for="TrapAmount">TrapAmount:</label>
-        <select class="gpDropdown" name="TrapAmount">
-          <option value="None">None</option>
-          <option value="Normal">Normal</option>
-          <option value="Extra">Extra</option>
-          <option value="Mayhem">Mayhem</option>
-          <option value="Onslaught">Onslaught</option>
-        </select><br>
-        <label for="TrapAppearance">TrapAppearance:</label>
-        <select class="gpDropdown" name="TrapAppearance">
-          <option value="MajorItems">MajorItems</option>
-          <option value="JunkItems">JunkItems</option>
-          <option value="Anything">Anything</option>
-        </select><br>
-        <label for="DamageMode">DamageMode:</label>
-        <select class="gpDropdown" name="DamageMode">
-          <option value="Default">Default</option>
-          <option value="Double">Double</option>
-          <option value="Quadruple">Quadruple</option>
-          <option value="OHKO">OHKO</option>
-          <option value="Doom">Doom</option>
-        </select><br>
-        <label for="DamageEffect">DamageEffect:</label>
-        <select class="gpDropdown" name="DamageEffect">
-          <option value="Default">Default</option>
-          <option value="Fire">Fire</option>
-          <option value="Ice">Ice</option>
-          <option value="Shock">Shock</option>
-          <option value="Knockdown">Knockdown</option>
-          <option value="Random">Random</option>
-        </select><br>
-        <label for="MovementMode">MovementMode:</label>
-        <select class="gpDropdown" name="MovementMode">
-          <option value="Default">Default</option>
-          <option value="HighSpeed">HighSpeed</option>
-          <option value="SuperLowGravity">SuperLowGravity</option>
-          <option value="LowGravity">LowGravity</option>
-          <option value="HighGravity">HighGravity</option>
-        </select><br>
-        <label for="FloorType">FloorType:</label>
-        <select class="gpDropdown" name="FloorType">
-          <option value="Default">Default</option>
-          <option value="Sand">Sand</option>
-          <option value="Ice">Ice</option>
-          <option value="Snow">Snow</option>
-          <option value="Random">Random</option>
-        </select><br>
-        <label for="NutandStickDrops">NutandStickDrops:</label>
-        <select class="gpDropdown" name="NutandStickDrops">
-          <option value="Default">Default</option>
-          <option value="Light">Light</option>
-          <option value="Medium">Medium</option>
-          <option value="Extra">Extra</option>
-          <option value="Mayhem">Mayhem</option>
-        </select><br>
-        <label for="ClockSpeed">ClockSpeed:</label>
-        <select class="gpDropdown" name="ClockSpeed">
-          <option value="Default">Default</option>
-          <option value="VerySlow">VerySlow</option>
-          <option value="Slow">Slow</option>
-          <option value="Fast">Fast</option>
-          <option value="VeryFast">VeryFast</option>
-          <option value="SuperFast">SuperFast</option>
-        </select><br>
+        <label for="RequiredBossRemains">RequiredBossRemains:
+          <select class="gpDropdown" name="RequiredBossRemains">
+            <option value=4>4</option>
+            <option value=3>3</option>
+            <option value=2>2</option>
+            <option value=1>1</option>
+            <option value=0>0</option>
+          </select>
+        </label><br> 
+        <label for="LogicMode">LogicMode:
+          <select class="gpDropdown" name="LogicMode">
+            <option value="Casual">Casual</option>
+            <option value="Glitched">Glitched</option>
+            <option value="Vanilla">Vanilla</option>
+            <option value="UserLogic">UserLogic</option>
+            <option value="NoLogic">NoLogic</option>
+          </select>
+        </label><br>
+        <label for="ItemPlacement">ItemPlacement:
+          <select class="gpDropdown" name="ItemPlacement">
+            <option value="Random">Random</option>
+            <option value="Bespoke">Bespoke</option>
+            <option value="Classic">Classic</option>
+          </select>
+        </label><br>
+        <label for="StartingItemMode">StartingItemMode:
+          <select class="gpDropdown" name="StartingItemMode">
+            <option value="None">None</option>
+            <option value="Random">Random</option>
+            <option value="AllowTemporaryItems">AllowTemporaryItems</option>
+          </select>
+        </label><br>
+        <label for="SmallKeyMode">SmallKeyMode:
+          <select class="gpDropdown" name="SmallKeyMode">
+            <option value="Default">Default</option>
+            <option value="DoorsOpen">DoorsOpen</option>
+            <option value="KeepWithinTemples">KeepWithinTemples</option>
+            <option value="KeepWithinArea">KeepWithinArea</option>
+            <option value="KeepWithinOverworld">KeepWithinOverworld</option>
+            <option value="KeepThroughTime">KeepThroughTime</option>
+          </select>
+        </label><br>
+        <label for="BossKeyMode">BossKeyMode:
+          <select class="gpDropdown" name="BossKeyMode">
+            <option value="Default">Default</option>
+            <option value="DoorsOpen">DoorsOpen</option>
+            <option value="GreatFairyRewards">GreatFairyRewards</option>
+            <option value="KeepWithinTemples">KeepWithinTemples</option>
+            <option value="KeepWithinArea">KeepWithinArea</option>
+            <option value="KeepWithinOverworld">KeepWithinOverworld</option>
+            <option value="KeepThroughTime">KeepThroughTime</option>
+          </select>
+        </label><br>
+        <label for="StrayFairyMode">StrayFairyMode:
+          <select class="gpDropdown" name="StrayFairyMode">
+            <option value="Default">Default</option>
+            <option value="ChestsOnly">ChestsOnly</option>
+            <option value="KeepWithinTemples">KeepWithinTemples</option>
+            <option value="KeepWithinArea">KeepWithinArea</option>
+            <option value="KeepWithinOverworld">KeepWithinOverworld</option>
+          </select>
+        </label><br>
+        <label for="BossRemainsMode">BossRemainsMode:
+          <select class="gpDropdown" name="BossRemainsMode">
+            <option value="Default">Default</option>
+            <option value="GreatFairyRewards">GreatFairyRewards</option>
+            <option value="ShuffleOnly">ShuffleOnly</option>
+            <option value="KeepWithinTemples">KeepWithinTemples</option>
+            <option value="KeepWithinArea">KeepWithinArea</option>
+            <option value="KeepWithinOverworld">KeepWithinOverworld</option>
+            <option value="Blitz1">Blitz1</option>
+            <option value="Blitz2">Blitz2</option>
+            <option value="Blitz3">Blitz3</option>
+            <option value="Blitz4">Blitz4</option>
+          </select>
+        </label><br>
+        <label for="PriceMode">PriceMode:
+          <select class="gpDropdown" name="PriceMode">
+            <option value="None">None</option>
+            <option value="Purchases">Purchases</option>
+            <option value="Minigames">Minigames</option>
+            <option value="Misc">Misc</option>
+            <option value="AccountForRoyalWallet">AccountForRoyalWallet</option>
+            <option value="ShuffleOnly">ShuffleOnly</option>
+          </select>
+        </label><br>
+        <label for="DungeonNavigationMode">DungeonNavigationMode:
+          <select class="gpDropdown" name="DungeonNavigationMode">
+            <option value="Default">Default</option>
+            <option value="KeepWithinTemples">KeepWithinTemples</option>
+            <option value="KeepWithinArea">KeepWithinArea</option>
+            <option value="KeepWithinOverworld">KeepWithinOverworld</option>
+            <option value="MapRevealsLocation">MapRevealsLocation</option>
+            <option value="CompassRevealsBoss">CompassRevealsBoss</option>
+          </select>
+        </label><br>
+        <label for="VictoryMode">VictoryMode:
+          <select class="gpDropdown" name="VictoryMode">
+            <option value="Default">Default</option>
+            <option value="DirectToCredits">DirectToCredits</option>
+            <option value="CantFightMajora">CantFightMajora</option>
+            <option value="Fairies">Fairies</option>
+            <option value="SkullTokens">SkullTokens</option>
+            <option value="NonTransformationMasks">NonTransformationMasks</option>
+            <option value="TransformationMasks">TransformationMasks</option>
+            <option value="Notebook">Notebook</option>
+            <option value="Hearts">Hearts</option>
+            <option value="OneBossRemains">OneBossRemains</option>
+            <option value="TwoBossRemains">TwoBossRemains</option>
+            <option value="ThreeBossRemains">ThreeBossRemains</option>
+            <option value="FourBossRemains">FourBossRemains</option>
+          </select>
+        </label><br>
+        <label for="TrapAmount">TrapAmount:
+          <select class="gpDropdown" name="TrapAmount">
+            <option value="None">None</option>
+            <option value="Normal">Normal</option>
+            <option value="Extra">Extra</option>
+            <option value="Mayhem">Mayhem</option>
+            <option value="Onslaught">Onslaught</option>
+          </select>
+        </label><br>
+        <label for="TrapAppearance">TrapAppearance:
+          <select class="gpDropdown" name="TrapAppearance">
+            <option value="MajorItems">MajorItems</option>
+            <option value="JunkItems">JunkItems</option>
+            <option value="Anything">Anything</option>
+          </select>
+        </label><br>
+        <label for="DamageMode">DamageMode:
+          <select class="gpDropdown" name="DamageMode">
+            <option value="Default">Default</option>
+            <option value="Double">Double</option>
+            <option value="Quadruple">Quadruple</option>
+            <option value="OHKO">OHKO</option>
+            <option value="Doom">Doom</option>
+          </select>
+        </label><br>
+        <label for="DamageEffect">DamageEffect:
+          <select class="gpDropdown" name="DamageEffect">
+            <option value="Default">Default</option>
+            <option value="Fire">Fire</option>
+            <option value="Ice">Ice</option>
+            <option value="Shock">Shock</option>
+            <option value="Knockdown">Knockdown</option>
+            <option value="Random">Random</option>
+          </select>
+        </label><br>
+        <label for="MovementMode">MovementMode:
+          <select class="gpDropdown" name="MovementMode">
+            <option value="Default">Default</option>
+            <option value="HighSpeed">HighSpeed</option>
+            <option value="SuperLowGravity">SuperLowGravity</option>
+            <option value="LowGravity">LowGravity</option>
+            <option value="HighGravity">HighGravity</option>
+          </select>
+        </label><br>
+        <label for="FloorType">FloorType:
+          <select class="gpDropdown" name="FloorType">
+            <option value="Default">Default</option>
+            <option value="Sand">Sand</option>
+            <option value="Ice">Ice</option>
+            <option value="Snow">Snow</option>
+            <option value="Random">Random</option>
+          </select>
+        </label><br>
+        <label for="NutandStickDrops">NutandStickDrops:
+          <select class="gpDropdown" name="NutandStickDrops">
+            <option value="Default">Default</option>
+            <option value="Light">Light</option>
+            <option value="Medium">Medium</option>
+            <option value="Extra">Extra</option>
+            <option value="Mayhem">Mayhem</option>
+          </select>
+        </label><br>
+        <label for="ClockSpeed">ClockSpeed:
+          <select class="gpDropdown" name="ClockSpeed">
+            <option value="Default">Default</option>
+            <option value="VerySlow">VerySlow</option>
+            <option value="Slow">Slow</option>
+            <option value="Fast">Fast</option>
+            <option value="VeryFast">VeryFast</option>
+            <option value="SuperFast">SuperFast</option>
+          </select>
+        </label><br>
         <label><input type="checkbox" class="gpCheckbox" name="HideClock">HideClock</label><br>
       </div>
     </div>
     <div class="column3">
       <div class="indented">
-        <label for="BlastMaskCooldown">BlastMaskCooldown:</label>
-        <select class="gpDropdown" name="BlastMaskCooldown">
-          <option value="Default">Default</option>
-          <option value="Instant">Instant</option>
-          <option value="VeryShort">VeryShort</option>
-          <option value="Short">Short</option>
-          <option value="Long">Long</option>
-          <option value="VeryLong">VeryLong</option>
-        </select><br>
+        <label for="BlastMaskCooldown">BlastMaskCooldown:
+          <select class="gpDropdown" name="BlastMaskCooldown">
+            <option value="Default">Default</option>
+            <option value="Instant">Instant</option>
+            <option value="VeryShort">VeryShort</option>
+            <option value="Short">Short</option>
+            <option value="Long">Long</option>
+            <option value="VeryLong">VeryLong</option>
+          </select>
+        </label><br>
         <label><input type="checkbox" class="gpCheckbox" name="EnableSunsSong">EnableSunsSong</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="AllowFierceDeityAnywhere">AllowFierceDeityAnywhere</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="ByoAmmo">ByoAmmo</label><br>
@@ -366,27 +390,30 @@
         <label><input type="checkbox" class="gpCheckbox" name="HookshotAnySurface">HookshotAnySurface</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="VanillaMoonTrialAccess">VanillaMoonTrialAccess</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="QuickTextEnabled">QuickTextEnabled</label><br>
-        <label for="Character">Character:</label>
-        <select class="gpDropdown" name="Character">
-          <option value="LinkMM">LinkMM</option>
-          <option value="LinkOOT">LinkOOT</option>
-          <option value="AdultLink">AdultLink</option>
-          <option value="Kafei">Kafei</option>
-        </select><br>
-        <label for="GossipHintStyle">GossipHintStyle:</label>
-        <select class="gpDropdown" name="GossipHintStyle">
-          <option value="Default">Default</option>
-          <option value="Random">Random</option>
-          <option value="Relevant">Relevant</option>
-          <option value="Competitive">Competitive</option>
-        </select><br>
-        <label for="GaroHintStyle">GaroHintStyle:</label>
-        <select class="gpDropdown" name="GaroHintStyle">
-          <option value="Default">Default</option>
-          <option value="Random">Random</option>
-          <option value="Relevant">Relevant</option>
-          <option value="Competitive">Competitive</option>
-        </select><br>
+        <label for="Character">Character:
+          <select class="gpDropdown" name="Character">
+            <option value="LinkMM">LinkMM</option>
+            <option value="LinkOOT">LinkOOT</option>
+            <option value="AdultLink">AdultLink</option>
+            <option value="Kafei">Kafei</option>
+          </select>
+        </label><br>
+        <label for="GossipHintStyle">GossipHintStyle:
+          <select class="gpDropdown" name="GossipHintStyle">
+            <option value="Default">Default</option>
+            <option value="Random">Random</option>
+            <option value="Relevant">Relevant</option>
+            <option value="Competitive">Competitive</option>
+          </select>
+        </label><br>
+        <label for="GaroHintStyle">GaroHintStyle:
+          <select class="gpDropdown" name="GaroHintStyle">
+            <option value="Default">Default</option>
+            <option value="Random">Random</option>
+            <option value="Relevant">Relevant</option>
+            <option value="Competitive">Competitive</option>
+          </select>
+        </label><br>
         <label><input type="checkbox" class="gpCheckbox" name="MixGossipAndGaroHints">MixGossipAndGaroHints</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="FreeHints">FreeHints</label><br>
         <label><input type="checkbox" class="gpCheckbox" name="FreeGaroHints">FreeGaroHints</label><br>
@@ -552,9 +579,6 @@
       </div>
     </div>
   </div>
-</form>
-<form id="downloadButton">
-  <input type="submit" value="Download settings">
 </form>
 <script type="module" src="./mmr.js"></script>
 

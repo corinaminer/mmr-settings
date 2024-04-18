@@ -1,10 +1,36 @@
 import { getDefaultGameplaySettings } from "./default-settings.js";
+import { classicCatTooltips, cutsceneTooltips, gameplaySettingTooltips, itemCatTooltips, locCatTooltips, trickTooltips } from "./tooltips.js";
 import { getSettings, setSettings, update } from "./settings.js";
 
-// Initialization: Load default settings, update form to show them
-reset();
+// Set up listeners on all inputs to update settings object when they change
 const allSettingFormElements = document.querySelectorAll('input[type="checkbox"],select');
 allSettingFormElements.forEach(s => s.addEventListener("change", event => update(event.target)));
+
+// Pull out all the individual groups of form inputs and add tooltips
+const generalSettingsCheckboxes = document.querySelectorAll('input[class="gpCheckbox"]');
+const dropdowns = document.querySelectorAll('select[class="gpDropdown"]');
+const itemCatCheckboxes = document.querySelectorAll('input[class="item_cat"]');
+const locCatCheckboxes = document.querySelectorAll('input[class="location_cat"]');
+const classicCatCheckboxes = document.querySelectorAll('input[class="classic_cat"]');
+const trickCheckboxes = document.querySelectorAll('input[class="tricks"]');
+const generalCutsceneCheckboxes = document.querySelectorAll('input[class="cutscene_general"');
+const bossIntroCutsceneCheckboxes = document.querySelectorAll('input[class="cutscene_bossintros"');
+generalSettingsCheckboxes.forEach(c => c.parentElement.title = gameplaySettingTooltips[c.name]);
+dropdowns.forEach(d => {
+  // TODO Add a tooltip for ItemPlacement
+  if (gameplaySettingTooltips[d.name]) {
+    d.parentElement.title = gameplaySettingTooltips[d.name];
+  }
+});
+itemCatCheckboxes.forEach(c => c.parentElement.title = itemCatTooltips[c.name]);
+locCatCheckboxes.forEach(c => c.parentElement.title = locCatTooltips[c.name]);
+classicCatCheckboxes.forEach(c => c.parentElement.title = classicCatTooltips[c.name]);
+trickCheckboxes.forEach(c => c.parentElement.title = trickTooltips[c.name]);
+generalCutsceneCheckboxes.forEach(c => c.parentElement.title = cutsceneTooltips[c.name]);
+bossIntroCutsceneCheckboxes.forEach(c => c.parentElement.title = cutsceneTooltips[c.name]);
+
+// Load default settings and update form to show them
+reset();
 
 /** Resets the settings and form to default settings. */
 function reset() {
@@ -16,9 +42,6 @@ function populateFormFromCurrentSettings() {
   const gpSettings = getSettings()["GameplaySettings"];
 
   // Update randomized checks
-  const itemCatCheckboxes = document.querySelectorAll('input[class="item_cat"]');
-  const locCatCheckboxes = document.querySelectorAll('input[class="location_cat"]');
-  const classicCatCheckboxes = document.querySelectorAll('input[class="classic_cat"]');
   const itemCat = gpSettings.ItemCategoriesRandomized || [];
   const locCat = gpSettings.LocationCategoriesRandomized || [];
   const classicCat = gpSettings.ClassicCategoriesRandomized || [];
@@ -27,14 +50,12 @@ function populateFormFromCurrentSettings() {
   classicCatCheckboxes.forEach(c => c.checked = classicCat.indexOf(c.name) !== -1);
 
   // Top-level checkboxes: Checked only if explicitly marked true in settings
-  const checkboxes = document.querySelectorAll('input[class="gpCheckbox"]');
-  checkboxes.forEach(checkbox => {
+  generalSettingsCheckboxes.forEach(checkbox => {
     const valInSettings = gpSettings[checkbox.name];
     checkbox.checked = valInSettings === true;
   })
 
   // Dropdowns: If setting is not explicitly set in imported settings, use default value
-  const dropdowns = document.querySelectorAll('select[class="gpDropdown"]');
   dropdowns.forEach(dropdown => {
     const setVal = gpSettings[dropdown.name];
     const newVal = setVal !== undefined ? setVal : getDefaultGameplaySettings()[dropdown.name];
@@ -42,16 +63,13 @@ function populateFormFromCurrentSettings() {
   })
 
   // Enabled tricks: setSettings() guarantees this is populated
-  const trickCheckboxes = document.querySelectorAll('input[class="tricks"]');
   trickCheckboxes.forEach(c => c.checked = gpSettings["EnabledTricks"].indexOf(c.name) !== -1);
 
   // Shorten cutscene settings: setSettings() guarantees this is populated
   const shortenGeneral = gpSettings.ShortenCutsceneSettings.General.split(", ");
   const shortenBossIntros = gpSettings.ShortenCutsceneSettings.BossIntros.split(", ");
-  const generalCheckboxes = document.querySelectorAll('input[class="cutscene_general"');
-  const bossIntroCheckboxes = document.querySelectorAll('input[class="cutscene_bossintros"');
-  generalCheckboxes.forEach(c => c.checked = shortenGeneral.indexOf(c.name) !== -1);
-  bossIntroCheckboxes.forEach(c => c.checked = shortenBossIntros.indexOf(c.name) !== -1);
+  generalCutsceneCheckboxes.forEach(c => c.checked = shortenGeneral.indexOf(c.name) !== -1);
+  bossIntroCutsceneCheckboxes.forEach(c => c.checked = shortenBossIntros.indexOf(c.name) !== -1);
 }
 
 /** Sets current settings to the given settings and updates the form accordingly. */
